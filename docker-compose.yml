@@ -1,7 +1,5 @@
 magento:
   build: app
-  ports:
-    - '9000:9000'
   links:
     - "${app}-db"
   volumes:
@@ -9,8 +7,18 @@ magento:
     - './volumes/export:/export'
   command: "${command}"
   environment:
-    DB_HOST: "${app}-db"
     DOCUMENT_ROOT: '/var/www/app'
+    APP_VERSION: 'latest'
+    APP_LOCALE: 'en_us'
+    APP_TITLE: "${app}"
+    APP_ADMIN_USER: 'admin'
+    APP_ADMIN_EMAIL: 'admin@example.com'
+    APP_ADMIN_PASSWORD: "password4${app}"
+    APP_URL: "http://${ip}"
+    APP_DB_HOST: "${app}-db"
+    APP_DB_NAME: "${app}"
+    APP_DB_USER: "${app}"
+    APP_DB_PASSWORD: "password4${app}"
 magento-db:
   image: 'mysql:5.6'
   volumes:

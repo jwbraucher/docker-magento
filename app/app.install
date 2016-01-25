@@ -3,11 +3,10 @@
 
 # This script installs magento
 
-set -x
+source /app.configure
 
-# sudo -u "${php_user}" /bin/bash -x << END_OF_SUDO
-# cd "${php_home}"
-/bin/bash -x << END_OF_SUDO
+sudo -u "${php_user}" /bin/bash -ex << END_OF_SUDO
+cd "${php_home}"
 
 echo Downloading Magento
 # curl -s -L https://github.com/magento/magento2/releases/latest \
@@ -15,16 +14,16 @@ echo Downloading Magento
 #     | wget --base=http://github.com/ -i - -O /tmp/magento.tar.gz
 
 curl -s -L https://github.com/OpenMage/magento-mirror/releases/latest \
-    | egrep -o '/magento-mirror/archive/.*tar\.gz' | head -1 \
+    | egrep -o 'OpenMage/magento-mirror/archive/.*tar\.gz' | head -1 \
     | wget --base=http://github.com/ -i - -O /tmp/magento.tar.gz
-tar -zxf /tmp/magento.tar.gz
+tar -zxf /tmp/magento.tar.gz --strip-components=1
 
 echo Installing Magento
 php -f install.php -- \
   --license_agreement_accepted "yes" \
   --locale $locale \
-  --timezone $MAGENTO_TIMEZONE \
-  --default_currency $MAGENTO_DEFAULT_CURRENCY \
+  --timezone 'Mountain' \
+  --default_currency 'USD' \
   --db_host $db_host \
   --db_name $db_name \
   --db_user $db_user \
