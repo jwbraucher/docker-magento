@@ -1,0 +1,48 @@
+#!/bin/bash -ex
+# vim: set filetype=sh :
+
+# This script installs magento
+
+set -x
+
+# sudo -u "${php_user}" /bin/bash -x << END_OF_SUDO
+# cd "${php_home}"
+/bin/bash -x << END_OF_SUDO
+
+echo Downloading Magento
+# curl -s -L https://github.com/magento/magento2/releases/latest \
+#     | egrep -o '/magento/magento2/archive/.*tar\.gz' \
+#     | wget --base=http://github.com/ -i - -O /tmp/magento.tar.gz
+
+curl -s -L https://github.com/OpenMage/magento-mirror/releases/latest \
+    | egrep -o '/magento-mirror/archive/.*tar\.gz' | head -1 \
+    | wget --base=http://github.com/ -i - -O /tmp/magento.tar.gz
+tar -zxf /tmp/magento.tar.gz
+
+echo Installing Magento
+php -f install.php -- \
+  --license_agreement_accepted "yes" \
+  --locale $locale \
+  --timezone $MAGENTO_TIMEZONE \
+  --default_currency $MAGENTO_DEFAULT_CURRENCY \
+  --db_host $db_host \
+  --db_name $db_name \
+  --db_user $db_user \
+  --db_pass $db_pass \
+  --url $app_url \
+  --skip_url_validation 'yes' \
+  --use_rewrites 'yes' \
+  --use_secure 'yes' \
+  --secure_base_url "$app_url" \
+  --use_secure_admin 'yes' \
+  --admin_firstname $admin_user \
+  --admin_lastname $admin_user \
+  --admin_email $admin_email \
+  --admin_username $admin_user \
+  --admin_password $admin_pass
+
+END_OF_SUDO
+
+# Run project-specific installation commands
+source /app.install.local
+
