@@ -22,7 +22,7 @@ echo Installing Magento
 php -f install.php -- \
   --license_agreement_accepted "yes" \
   --locale $locale \
-  --timezone 'Mountain' \
+  --timezone 'MST7MDT' \
   --default_currency 'USD' \
   --db_host $db_host \
   --db_name $db_name \
@@ -31,17 +31,16 @@ php -f install.php -- \
   --url $app_url \
   --skip_url_validation 'yes' \
   --use_rewrites 'yes' \
-  --use_secure 'yes' \
+  --use_secure 'no' \
   --secure_base_url "$app_url" \
-  --use_secure_admin 'yes' \
+  --use_secure_admin 'no' \
   --admin_firstname $admin_user \
   --admin_lastname $admin_user \
   --admin_email $admin_email \
   --admin_username $admin_user \
   --admin_password $admin_pass
 
+  # Run project-specific installation commands
+  source /app.install.local
+
 END_OF_SUDO
-
-# Run project-specific installation commands
-source /app.install.local
-
