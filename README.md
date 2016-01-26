@@ -6,7 +6,7 @@ The [braucher/magento](https://hub.docker.com/r/braucher/magento/) image also in
 
 * mage
 * postfix
-* /app* entrypoint scripts
+* /app entrypoint
 
 ## Usage
 
@@ -16,7 +16,7 @@ Run ```/app install``` to install Magento
 Run ```/app backup``` to backup the Magento installation
 
 See the
-[docker-compose.yml from the sample-project branch](https://github.com/jwbraucher/docker-magento/tree/sample-project/docker-compose.yml)
+[docker-compose.yml from the sample-project branch](https://github.com/jwbraucher/docker-magento/tree/latest/docker-compose.yml)
 for an example of how to build a new project from this image using the
 following Docker images:
 
@@ -24,17 +24,12 @@ following Docker images:
 * [braucher/fcgi](https://hub.docker.com/r/braucher/fcgi/)
 * [mysql](https://hub.docker.com/r/_/mysql/)
 
-If you fork the sample-project branch, modify the following files:
-* Makefile.local 
+To start your own image, fork this project and modify the following files:
+* Makefile.local
 * docker-compose.yml
-app/app.*
+* app/app.*
 
 ### Environment Variables
-
-Whenever this container starts it re-configures Magento
-Be sure to supply the correct runtime environment variables when
-you first launch the containers. Docker will remember the environment
-variables for subsequent container restarts.
 
 See the [/app.env script](https://github.com/jwbraucher/docker-magento/tree/latest/app/app.env)
 for all accepted parameters. 
