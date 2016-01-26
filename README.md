@@ -1,4 +1,4 @@
-# braucher/magento unreleased
+# braucher/magento 1.0.0
 
 This [braucher/magento](https://hub.docker.com/r/braucher/magento/) docker image provides an Ubuntu 14.04 magento application container.
 
