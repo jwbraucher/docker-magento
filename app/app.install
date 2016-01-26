@@ -40,7 +40,9 @@ php -f install.php -- \
   --admin_username $admin_user \
   --admin_password $admin_pass
 
-  # Run project-specific installation commands
-  source /app.install.local
-
 END_OF_SUDO
+
+# Run project-specific installation commands
+s
+# Start the app
+source /app.start
