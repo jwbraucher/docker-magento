@@ -1,5 +1,5 @@
 magento:
-  image: braucher/magento
+  build: app
   links:
     - "${app}-db"
   volumes:
