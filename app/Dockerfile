@@ -1,11 +1,7 @@
-# lamp stack built with puppet
+# magento
 
-FROM braucher/php
+FROM braucher/magento
 MAINTAINER Jeff Braucher <jeff@braucher.net>
-
-# Install curl for downloading magento
-RUN apt-get update && \
-  apt-get install -y curl
 
 # Run app
 RUN mkdir -p /var/www/app
