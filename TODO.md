@@ -1,2 +1,1 @@
 - Make mage executable and add to path of main user
-- Don't start after install
