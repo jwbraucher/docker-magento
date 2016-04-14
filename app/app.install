@@ -5,8 +5,8 @@
 
 source /app.configure
 
-sudo -u "${php_user}" /bin/bash -ex << END_OF_SUDO
-cd "${php_home}"
+sudo -u "${app_user}" /bin/bash -ex << END_OF_SUDO
+cd "${app_home}"
 
 echo Downloading Magento
 # curl -s -L https://github.com/magento/magento2/releases/latest \
@@ -43,6 +43,5 @@ php -f install.php -- \
 END_OF_SUDO
 
 # Run project-specific installation commands
-s
-# Start the app
-source /app.start
+source /app.install.local
+
