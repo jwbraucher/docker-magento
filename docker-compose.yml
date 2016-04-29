@@ -27,6 +27,7 @@ magento-db:
   image: 'mysql:5.6'
   volumes:
     - '/var/lib/mysql'
+    - './volumes/export:/export'
   environment:
     MYSQL_ROOT_PASSWORD: "root_66_${app}"
     MYSQL_DATABASE: "${app}"
