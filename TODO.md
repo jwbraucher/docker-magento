@@ -1,1 +1,5 @@
 - Make mage executable and add to path of main user
+- Run Mage install once to update channels
+- update base_url in database in app.config
+  - select * from core_config_data where path = 'web/unsecure/base_url';
+  - update core_config_data set value='http://192.168.99.100/int/' where config_id=567;
